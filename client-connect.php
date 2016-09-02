@@ -17,14 +17,29 @@ if (isset($argv[1])) {
 }
 
 $privateKey = '8c484c8c89547cncy4mc8nzxbcvi4eba66e10fba74dbf9e99c22f';
+$cryptKey = 'wbHPNKi@t-4t@k(!b9xh^gVJ&ywi0z$5';
 
 $time = time();
 $id = 1;
 
-$data = ['name' => 'bob'];
-$message = buildMessage($time, $id, $data);
+$data = ['name' => 'Super long name'];
 
+$iv = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
+$ciphered = mcrypt_encrypt(
+    MCRYPT_RIJNDAEL_128,
+    $cryptKey,
+    json_encode($data),
+    'ctr',
+    $iv
+);
+
+$payload = ['payload' => base64_encode(
+	$iv.$ciphered
+)];
+
+$message = buildMessage($time, $id, $payload);
 $hash = hash_hmac('sha256', $message, $privateKey);
+
 $headers = ['API_ID: ' . $id, 'API_TIME: ' . $time, 'API_HASH: ' . $hash];
 
 $method = 'POST';
@@ -36,14 +51,14 @@ curl_setopt($ch, CURLOPT_URL, $host);
 switch($method) {
     case 'POST':
     	curl_setopt($ch, CURLOPT_POST, TRUE);
-    	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
     	break;
     case 'GET':
     	break;
     default:
-        $data = http_build_query($data);
+        $data = http_build_query($payload);
         curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         break;
 }

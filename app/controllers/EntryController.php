@@ -9,7 +9,7 @@ class EntryController extends \Phalcon\Mvc\Controller {
 
         $entry = new \Models\Entry();
         $entry->date = date('Y-m-d H:i:s');
-        $entry->name = $this->request->getPost("name",'string');
+        $entry->encrypted_data = $this->request->getPost("payload",'string');
         $entry->save();
 	}
 }
