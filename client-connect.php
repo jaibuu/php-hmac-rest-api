@@ -5,7 +5,7 @@ if (!function_exists('curl_init')) {
 }
 
 
-$route = '/ping';
+$route = '/v1/create';
 //$route = '/test/4';
 //$route = '/doesntexist';
 //$route = '/skip/auth';
