@@ -7,7 +7,7 @@
 $settings = array(
 	'database' => array(
 		'adapter' => 'Sqlite',	/* Possible Values: Mysql, Postgres, Sqlite */
-		'host' => 'localhost',
+		'host' => '',
 		'username' => '',
 		'password' => '',
 		'name' => 'saveit',
