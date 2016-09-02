@@ -1,12 +1,12 @@
 <?php
 
-namespace Models;
+// namespace Models;
 
-class Api extends \Phalcon\Mvc\Model {
+// class Api extends \Phalcon\Mvc\Model {
 
-	public $client_id;
+// 	public $client_id;
 
-	public $private_key;
+// 	public $private_key;
 
-	public $status;
-}
+// 	public $status;
+// }

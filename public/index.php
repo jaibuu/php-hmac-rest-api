@@ -44,7 +44,8 @@ try {
 	$time = $app->request->getHeader('API_TIME');
 	$hash = $app->request->getHeader('API_HASH');
 
-	$privateKey = Api::findFirst($clientId)->private_key;
+	// $privateKey = Api::findFirst($clientId)->private_key;
+	$privateKey = $app->config->data->clients[$clientId]->private_key;
 	
         switch ($_SERVER['REQUEST_METHOD']) {
             
