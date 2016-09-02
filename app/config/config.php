@@ -16,7 +16,7 @@ $settings = array(
 	'data' => array(
 		'clients' => array(
 			'1' => array (
-				'private_key' => '593fe6ed77014f9507761028801aa376f141916bd26b1b3f0271b5ec3135b989'
+				'private_key' => '8c484c8c89547cncy4mc8nzxbcvi4eba66e10fba74dbf9e99c22f'
 			)
 
 		)
