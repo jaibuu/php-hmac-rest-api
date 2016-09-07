@@ -33,9 +33,16 @@ $ciphered = mcrypt_encrypt(
     $iv
 );
 
-$payload = ['payload' => base64_encode(
-	$iv.$ciphered
-)];
+if(false){
+    $payload = ['payload' => base64_encode(json_encode(
+        $data
+    ))];
+}else{
+
+    $payload = ['payload' => base64_encode(
+    	$iv.$ciphered
+    )];
+}
 
 $message = buildMessage($time, $id, $payload);
 $hash = hash_hmac('sha256', $message, $privateKey);
